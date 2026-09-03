@@ -39,7 +39,7 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           image: ghcr.io/sudhanshu22123/local-webapp:1.0
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
