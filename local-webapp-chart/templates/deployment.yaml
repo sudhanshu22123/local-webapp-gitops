@@ -25,7 +25,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+      - name: github-auth
       {{- end }}
       serviceAccountName: {{ include "local-webapp-chart.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
@@ -38,7 +38,7 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: ghcr.io/sudhanshu22123/local-webapp:1.0
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
