@@ -38,7 +38,7 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: ghcr.io/sudhanshu22123/local-webapp:2.0
+          image: ghcr.io/sudhanshu22123/local-webapp:3.0
           imagePullPolicy: IfNotPresent 
 
           ports:
