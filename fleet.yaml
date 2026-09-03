@@ -1,0 +1,11 @@
+defaultNamespace: local-webapp
+
+helm:
+  chart: ./local-webapp-chart
+  releaseName: local-webapp
+
+targetCustomizations:
+  - name: laptop-local
+    clusterSelector:
+      matchLabels:
+        management.cattle.io/cluster-display-name: laptop-local
