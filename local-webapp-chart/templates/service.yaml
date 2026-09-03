@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 80       # The port the service listens on inside the cluster
       targetPort: 80 # The port your application container is actually listening on
-      nodePort: 30080 #
+      nodePort: 30090 #
