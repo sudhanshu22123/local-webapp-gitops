@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "local-webapp-chart.fullname" . }}
-  labels:
-    {{- include "local-webapp-chart.labels" . | nindent 4 }}
+  name: local-webapp-service
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
-      {{- if eq .Values.service.type "NodePort" }}
-      nodePort: {{ .Values.service.nodePort }}
-      {{- end }}
+  type: NodePort
   selector:
-    {{- include "local-webapp-chart.selectorLabels" . | nindent 4 }}
+    app: local-webapp # Must exactly match the matchLabels/labels in your Deployment
+  ports:
+    - protocol: TCP
+      port: 80       # The port the service listens on inside the cluster
+      targetPort: 80 # The port your application container is actually listening on
+      nodePort: 30080 #
