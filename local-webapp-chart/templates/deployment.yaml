@@ -38,7 +38,7 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: ghcr.io/sudhanshu22123/local-webapp:3.0
+          image: ghcr.io/sudhanshu22123/local-webapp:5.0
           imagePullPolicy: IfNotPresent 
 
           ports:
@@ -47,13 +47,13 @@ spec:
               protocol: TCP
           {{- with .Values.livenessProbe }}
           livenessProbe:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.readinessProbe }}
+            httpGet:
+              path: /
+              port: http
           readinessProbe:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.resources }}
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
